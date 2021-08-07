@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp2", "WpfApp2\WpfApp2.csproj", "{83817FD4-D6BD-447D-9499-ABA9A129C65D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseModel", "DataBaseModel\DataBaseModel.csproj", "{CFF74B21-C0B4-4205-9523-0788B165F762}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83817FD4-D6BD-447D-9499-ABA9A129C65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83817FD4-D6BD-447D-9499-ABA9A129C65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83817FD4-D6BD-447D-9499-ABA9A129C65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83817FD4-D6BD-447D-9499-ABA9A129C65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF74B21-C0B4-4205-9523-0788B165F762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF74B21-C0B4-4205-9523-0788B165F762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF74B21-C0B4-4205-9523-0788B165F762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF74B21-C0B4-4205-9523-0788B165F762}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF7B8968-C8A5-4AC5-8775-81AF0B17D65F}
+	EndGlobalSection
+EndGlobal

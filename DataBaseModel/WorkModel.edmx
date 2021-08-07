@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище testworkModel" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="order_line">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="order_id" Type="int" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_on" Type="datetime" Precision="0" />
+          <Property Name="modified_on" Type="datetime" Precision="0" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="gender" Type="bool" />
+          <Property Name="date_of_bith" Type="datetime" Precision="0" />
+        </EntityType>
+        <Association Name="fk_order_line_order1_idx">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_line">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_line_product1_idx">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_line">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_user1_idx">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище testworkModelContainer">
+          <EntitySet Name="order_line" EntityType="Self.order_line" Schema="testwork" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="testwork" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="testwork" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="testwork" store:Type="Tables" />
+          <AssociationSet Name="fk_order_line_order1_idx" Association="Self.fk_order_line_order1_idx">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_line" EntitySet="order_line" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_line_product1_idx" Association="Self.fk_order_line_product1_idx">
+            <End Role="product" EntitySet="product" />
+            <End Role="order_line" EntitySet="order_line" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_user1_idx" Association="Self.fk_order_user1_idx">
+            <End Role="user" EntitySet="user" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testworkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="order_line">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="Decimal" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="order_id" Type="Int32" />
+          <NavigationProperty Name="orders" Relationship="Self.fk_order_line_order1_idx" FromRole="order_line" ToRole="orders" />
+          <NavigationProperty Name="product" Relationship="Self.fk_order_line_product1_idx" FromRole="order_line" ToRole="product" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_on" Type="DateTime" />
+          <Property Name="modified_on" Type="DateTime" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="order_line" Relationship="Self.fk_order_line_order1_idx" FromRole="orders" ToRole="order_line" />
+          <NavigationProperty Name="user" Relationship="Self.fk_order_user1_idx" FromRole="orders" ToRole="user" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="order_line" Relationship="Self.fk_order_line_product1_idx" FromRole="product" ToRole="order_line" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="Boolean" />
+          <Property Name="date_of_bith" Type="DateTime" />
+          <NavigationProperty Name="orders" Relationship="Self.fk_order_user1_idx" FromRole="user" ToRole="orders" />
+        </EntityType>
+        <Association Name="fk_order_line_order1_idx">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_line">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_line_product1_idx">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_line">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_order_user1_idx">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestworkContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="order_line" EntityType="Self.order_line" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="fk_order_line_order1_idx" Association="Self.fk_order_line_order1_idx">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_line" EntitySet="order_line" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_line_product1_idx" Association="Self.fk_order_line_product1_idx">
+            <End Role="product" EntitySet="product" />
+            <End Role="order_line" EntitySet="order_line" />
+          </AssociationSet>
+          <AssociationSet Name="fk_order_user1_idx" Association="Self.fk_order_user1_idx">
+            <End Role="user" EntitySet="user" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище testworkModelContainer" CdmEntityContainer="TestworkContext">
+          <EntitySetMapping Name="order_line">
+            <EntityTypeMapping TypeName="testworkModel.order_line">
+              <MappingFragment StoreEntitySet="order_line">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="testworkModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="testworkModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="testworkModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="date_of_bith" ColumnName="date_of_bith" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

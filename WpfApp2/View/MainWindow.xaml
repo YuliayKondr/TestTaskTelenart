@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:myControls="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="900">
+    <Grid Background="Lavender" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="35*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Заказы" HorizontalAlignment="Left" Margin="20,26,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Товары" Grid.Column="1" HorizontalAlignment="Left" Margin="20,26,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Заказ" Grid.Column="1" HorizontalAlignment="Left" Margin="102,26,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <DataGrid ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" SelectedIndex="{Binding SelectedOrderIndex}" x:Name="Order" HorizontalAlignment="Left" Height="486" Margin="20,57,0,0" VerticalAlignment="Top" Width="538" >
+        </DataGrid>
+        <DataGrid Grid.Column="1" HorizontalAlignment="Left" Height="481" Margin="20,62,0,0" VerticalAlignment="Top" Width="266"  ItemsSource="{Binding SelectedProducts}">
+        </DataGrid>
+    </Grid>
+</Window>
