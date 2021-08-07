@@ -1,3 +1,6 @@
+Для выполнения данного задания была построена база TestWork по следующим sql-запросах 
+
+
 CREATE DATABASE IF NOT EXISTS TestWork DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 USE TestWork;
