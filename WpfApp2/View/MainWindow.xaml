@@ -15,9 +15,10 @@
         <Label Content="Заказы" HorizontalAlignment="Left" Margin="20,26,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Товары" Grid.Column="1" HorizontalAlignment="Left" Margin="20,26,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Заказ" Grid.Column="1" HorizontalAlignment="Left" Margin="102,26,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="NameOrderCurrent" Content="{Binding NameOrder}" Grid.Column="1" HorizontalAlignment="Left" Margin="162,26,0,0" VerticalAlignment="Top" FontSize="16"/>
         <DataGrid ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" SelectedIndex="{Binding SelectedOrderIndex}" x:Name="Order" HorizontalAlignment="Left" Height="486" Margin="20,57,0,0" VerticalAlignment="Top" Width="538" >
         </DataGrid>
         <DataGrid Grid.Column="1" HorizontalAlignment="Left" Height="481" Margin="20,62,0,0" VerticalAlignment="Top" Width="266"  ItemsSource="{Binding SelectedProducts}">
-        </DataGrid>
+        </DataGrid>       
     </Grid>
 </Window>

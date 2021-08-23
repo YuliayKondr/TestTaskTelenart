@@ -12,11 +12,18 @@ namespace WpfApp2.ViewModel
     internal class ApplicationViewModel : INotifyPropertyChanged
     {
         private ModelOrder selectedOrder;
-        private int selectedPhoneIndex;
+        private string _nameOrder;
+        private int selectedIndex;
         ServiceOrders _serviceOrders;
         public ObservableCollection<ModelOrder> Orders { get; set; }
 
         public ObservableCollection<ModelProduct> SelectedProducts { get; set; }
+
+        public string NameOrder
+        {
+            get { return _nameOrder; }
+            set { _nameOrder = value; }
+        }
 
         public ModelOrder SelectedOrder
         {
@@ -33,20 +40,22 @@ namespace WpfApp2.ViewModel
                     {
                         SelectedProducts.Add(orderLines[i]);
                     }
+                    NameOrder = selectedOrder.IdOrder.ToString();
                 }
                 OnPropertyChanged("SelectedOrder");
                 OnPropertyChanged("SelectedProducts");
+                OnPropertyChanged("NameOrder");
             }
         }
 
         public int SelectedOrderIndex
         {
-            get { return selectedPhoneIndex; }
+            get { return selectedIndex; }
             set
             {
-                selectedPhoneIndex = value;
+                selectedIndex = value;
             }
-        }
+        }       
        
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,6 +69,7 @@ namespace WpfApp2.ViewModel
                 selectedOrder = models[0];
                 ModelProduct[] orderLines = _serviceOrders.GetProduct(selectedOrder.IdOrder);
                 SelectedProducts = new ObservableCollection<ModelProduct>(orderLines);
+                NameOrder = models[0].IdOrder.ToString();
             }
 
             Orders = new ObservableCollection<ModelOrder>(models);              
